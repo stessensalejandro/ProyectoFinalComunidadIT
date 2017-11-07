@@ -16,6 +16,7 @@ and open the template in the editor.
   <a href="porCategoria.php">Productos</a> |
   <a href="nosotros.php">Sobre nosotros</a> |
 </nav>
+<<<<<<< HEAD
 </p>
 <?php
 $servername = "localhost";
@@ -100,8 +101,25 @@ function mostrarPorPrecio(nombre){
                 }
         });
 }
+=======
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "comercio_db";
+?>
 
+<br>
+<br>
+
+<p>categorias</p>
+>>>>>>> 0d23cf2d82d7e22fdc762db35dd9b6abc8858bf4
+
+<form method="post" id='formularioPorCate'>
+<SELECT name="cat" id="cate">
+
+<<<<<<< HEAD
 
 </script>
 
@@ -122,7 +140,65 @@ function mostrarPorPrecio(nombre){
 
 
 
+=======
+<?php 
+
+$conexion=mysql_connect("localhost",$username,"") or
+die("Problemas en la conexion");
+mysql_select_db($dbname,$conexion) or
+die("Problemas en la selección de la base de datos");  
+mysql_query ("SET NAMES 'utf8'");
+$categorias=mysql_query("select categoria from productos",$conexion) or
+die("Problemas en el select:".mysql_error());
+while($row = mysql_fetch_array($categorias))
+{
+echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
+}
+ 
+$seleccionado=$row['categoria'];
+$s=$_POST['cate'];
+>>>>>>> 0d23cf2d82d7e22fdc762db35dd9b6abc8858bf4
+
+?>
+</SELECT>
 
 
+<script>
+$('select#cate').on('change',function(){
+    var valor = $(this).val();
+    $('#selecciona').text(valor);
+});
+</script>
+<p id="selecciona">
+</p>
+
+
+<SELECT name="pro" id="prod">
+<?php 
+
+
+
+
+
+echo $s;
+
+//$s=$_POST['selecciona'];
+
+
+$productos=mysql_query("select nombre from productos where categoria='reusables'",$conexion);
+
+
+
+
+while($row = mysql_fetch_array($productos))
+{
+echo'<OPTION VALUE="'.$row['nombre'].'">'.'<br>'.$row['nombre'].'</OPTION>';
+}
+
+?>
+
+</SELECT>
+
+</form>
 
 </html>
