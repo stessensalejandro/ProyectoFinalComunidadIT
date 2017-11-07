@@ -17,7 +17,6 @@ and open the template in the editor.
 
 <nav>
   <a href="porCategoria.php">Productos</a> |
-  <a href="ofertas.php">Ofertas</a> |
   <a href="nosotros.php">Sobre nosotros</a> |
   </nav>
 
@@ -35,16 +34,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO Productos values(1,'bolsa',15,'10 unidades','descartables');";
+/*$sql = "INSERT INTO Productos values(1,'bolsa',15,'10 unidades','descartables');";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
 
 $conn->close();
-?>
+}
+*/
+
 ?> 
 
 
