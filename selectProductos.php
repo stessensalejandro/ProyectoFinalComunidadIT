@@ -48,7 +48,7 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
 $resultado =$_POST['categoria'];
 ?>
 <p> seleccione el producto</p>
-<select id='selectProductosPorCategorias'>
+<select id='selectProductosPorCategorias' name='selectProductosPorCategorias'>
 <?php
 
 $productos=mysql_query("select nombre from productos where categoria='$resultado'",$conexion);
@@ -59,11 +59,44 @@ while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].'</OPTION>';
 
 }
+
+//$precio=mysql_query("select precio from productos where nombre='$productoSeleccionado'",$conexion);
+
 ?>
 </select>
+
+
+<div class="form-group">
+  <label for="sel1">Elija una cantidad del producto:</label>
+  <select class="form-control" id="cantidadSeleccionada" name="cantidadSeleccionada">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+	<option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+	<option>9</option>
+    <option>10</option>
+  </select>
+</div>
+
+
 
 <input type="submit" value="Comprar">
 
 </form>
+
+<?php
+
+//echo $_POST['selectProductosPorCategorias'];
+//echo $productoSeleccionado;
+
+
+
+
+?>
+
 
 </html>

@@ -48,6 +48,11 @@ echo $seleccionado;
 ?>
 </SELECT>
 
+<div> ordenar por </div>
+<select name="precio" id="SelectPrecio">
+<option value="menorPrecio" selected>menor precio</option>
+<option value="mayorPrecio">mayor precio</option>
+</select>
 
 <script>
 $('select#selectCategoria').on('change',function(){
@@ -58,10 +63,14 @@ $('select#selectCategoria').on('change',function(){
 $('select#SelectPrecio').on('change',function(){
 	var seleccionado2 = $(this).val();
 	
-	
+	if (seleccionado2 == 'menorPrecio')
+	{
 	//alert seleccionado2;
-	mostrarPorPrecio(seleccionado2);
-	//$('select#SelectPrecio').hide();
+	mostrarPorMenorPrecio(seleccionado2);
+	}
+	else
+	mostrarPorMayorPrecio(seleccionado2);
+		
 });
 
 //Carga los productos de una categoria seleccionada
@@ -83,7 +92,7 @@ function mostrarPorCategorias(categoria){
         });
 }
 
-function mostrarPorPrecio(nombre){
+function mostrarPorMenorPrecio(nombre){
         var parametros = {
                 "nombre" : nombre,
                };
@@ -100,7 +109,23 @@ function mostrarPorPrecio(nombre){
                 }
         });
 }
-
+function mostrarPorMayorPrecio(nombre){
+        var parametros = {
+                "nombre" : nombre,
+               };
+        $.ajax({
+                data:  parametros,
+                url:   'selectProductosPorMayorPrecio.php',
+                type:  'post',
+				beforeSend: function () {
+                        $("#contenedor").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+					  $("#contenedor").html(response);
+						
+                }
+        });
+}
 
 
 </script>
@@ -111,15 +136,16 @@ function mostrarPorPrecio(nombre){
 <br>
 <br>
 <br>
-<div> ordenar por </div>
-<select name="precio" id="SelectPrecio">
-<option value="menorPrecio" selected>menor precio</option>
-<option value="mayorPrecio">mayor precio</option>
-</select>
+
 
 </form>
 
+<?php
 
+//$productoSeleccionado=$_POST['selectProductosPorCategorias'];
+//echo $productoSeleccionado;
+
+?>
 
 
 

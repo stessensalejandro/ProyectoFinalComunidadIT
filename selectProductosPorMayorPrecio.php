@@ -44,11 +44,13 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
 }
 ?>
 </SELECT>
+<?php
+?>
 <p> seleccione el producto</p>
 <select id='selectProductosPorCategorias' name='selectProductosPorCategorias'>
 <?php
 
-$productos=mysql_query("select nombre from productos order by precio asc",$conexion);
+$productos=mysql_query("select nombre from productos order by precio desc",$conexion);
 
 while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 {
@@ -56,8 +58,10 @@ while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].'</OPTION>';
 
 }
+
 ?>
 </select>
+
 <div class="form-group">
   <label for="sel1">Elija una cantidad del producto:</label>
   <select class="form-control" id="cantidadSeleccionada" name="cantidadSeleccionada">
@@ -73,6 +77,9 @@ echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].'</OPTION>';
     <option>10</option>
   </select>
 </div>
+
 <input type="submit" value="Comprar">
+
 </form>
+
 </html>
