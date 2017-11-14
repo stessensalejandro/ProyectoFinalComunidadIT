@@ -22,6 +22,22 @@ and open the template in the editor.
 
 </form>
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "comercio_db";
+
+$conexion=mysql_connect("localhost",$username,"") or
+die("Problemas en la conexion");
+mysql_select_db($dbname,$conexion) or
+die("Problemas en la selección de la base de datos");  
+mysql_query ("SET NAMES 'utf8'");
+mysql_query("update productos set cantidad--",$conexion) or
+die("Problemas en el select:".mysql_error());
+?>
+
+
 </body>
 
 
