@@ -36,7 +36,7 @@ $dbname = "comercio_db";
   <div class="panel-heading">Elija una categoria</div>
   <div class="panel-body">
 <SELECT name="cat" id="selectCategoria" class="form-control" data-live-search="true">
-
+<option value="noOption" disabled="disabled" selected="selected"> Seleccione una Categoria </option>
 <?php 
 
 $conexion=mysql_connect("localhost",$username,"") or
@@ -64,7 +64,8 @@ echo $seleccionado;
   <div class="panel-heading">Ordenar por</div>
   <div class="panel-body">
 <select name="precio" id="SelectPrecio" class="form-control" data-live-search="true">
-<option value="menorPrecio" selected>menor precio</option>
+<option value="noSelecciona" disabled="disabled" selected="selected"> Seleccione un producto </option>
+<option value="menorPrecio">menor precio</option>
 <option value="mayorPrecio">mayor precio</option>
 </div>
 </div>

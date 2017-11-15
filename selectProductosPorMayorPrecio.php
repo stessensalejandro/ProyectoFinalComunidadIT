@@ -49,6 +49,7 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
   <div class="panel-heading">Seleccione el Producto</div>
   <div class="panel-body">
 <select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<option disabled="disabled" selected="selected">Seleccione el Producto </option>
 <?php
 
 $productos=mysql_query("select nombre,descripcion,precio from productos order by precio desc",$conexion);

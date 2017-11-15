@@ -42,13 +42,13 @@ mysql_query ("SET NAMES 'utf8'");
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd" >Apellido:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="pwd" placeholder="ingresa apellido" name="ape" required>
+        <input type="text" class="form-control" id="ape" placeholder="ingresa apellido" name="ape" required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd" >Nombres:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="pwd" placeholder="ingresa nombres" name="nom" required>
+        <input type="text" class="form-control" id="nom" placeholder="ingresa nombres" name="nom" required>
       </div>
     </div>
 	<div class="form-group">
@@ -67,12 +67,17 @@ mysql_query ("SET NAMES 'utf8'");
 	<div class="form-group">
       <label class="control-label col-sm-2" for="email">Domicilio:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="dom" placeholder="ingresa Domicilio" name="domicilio" required>
+        <input type="text" class="form-control" id="dom" placeholder="ingresa Domicilio" name="dom" required>
       </div>
     </div>
 	
   
-	
+		<div class="form-group">
+      <label class="control-label col-sm-2" for="email">Domicilio de Entrega:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="domEntrega" placeholder="ingresa Domicilio" name="domEntrega" required>
+      </div>
+    </div>
 
 	
 	
@@ -148,11 +153,16 @@ function mostrarDatosTarjeta(tarjeta){
 
 
 echo "Usted va a confirmar la compra de: ";
-
+?>
+<p id="contieneCantidad">
+<?php
 echo $_POST['cantidadSeleccionada'];
+?>
+</p>
+<?php
 echo" ";
-echo $_POST['selectProductosPorCategorias'];
 
+</p>
 if(isset($_POST['ape']))
 {
 $apellido=$_POST['ape'];
@@ -161,9 +171,9 @@ if(isset($_POST['nom']))
 {
 $nombre=$_POST['nom'];
 }
-if(isset($_POST['ape']))
+if(isset($_POST['email']))
 {
-$email=$_POST['ape'];
+$email=$_POST['email'];
 }
 if(isset($_POST['dni']))
 {
@@ -173,6 +183,11 @@ if(isset($_POST['dom']))
 {
 $domicilio=$_POST['dom'];
 }
+if(isset($_POST['domEntrega']))
+{
+$domicilioEntrega=$_POST['domEntrega'];
+//echo $domicilioEntrega;
+}
 if(isset($_POST['fpago']))
 {
 $formaPago=$_POST['fpago'];
@@ -181,8 +196,8 @@ $formaPago=$_POST['fpago'];
 
 $productoSeleccionado=$_POST['selectProductosPorCategorias'];
 echo $productoSeleccionado;
-mysql_query("update Productos from productos set cantidad=cantidad-1 where nombre='$productoSeleccionado'",$conexion) or
-die("Problemas en el select:".mysql_error());
+//mysql_query("update Productos from productos set cantidad=cantidad-1 where nombre='$productoSeleccionado'",$conexion) or
+//die("Problemas en el select:".mysql_error());
 
 
 
