@@ -19,7 +19,7 @@
 <body>
 
 <?php
-
+session_start();
 
 $servername = "localhost";
 $username = "root";
@@ -87,7 +87,8 @@ mysql_query ("SET NAMES 'utf8'");
 
  <div class="form-group">
   <label for="sel1">Elija su forma de pago:</label>
-  <select class="form-control" id="fpago" name="fpago">
+  <select class="form-control" id="fpago" name="fpago" required>
+  <option disabled="disabled" selected="selected" value="">Elija su tarjeta </option>
     <option>MasterCard</option>
     <option>Visa</option>
     <option>Cabal</option>
@@ -103,17 +104,23 @@ mysql_query ("SET NAMES 'utf8'");
       <div class="control-label col-sm-15">
         <button type="submit" class="btn btn-success">Confirmar Compra</button>
       </div>
-    </div>
+<div>
 	
 
 
 
-
+<p id="contieneCantidad" name="contieneCantidad">
+<?php
+$cant=$_POST['cantidadSeleccionada'];
+$_SESSION['cantidadComprada']=$cant;
+echo $cant;
+?>
+</p>
 	
 
 
-	
-  </form>
+ </form>	
+
 
 
 <script>
@@ -154,15 +161,11 @@ function mostrarDatosTarjeta(tarjeta){
 
 echo "Usted va a confirmar la compra de: ";
 ?>
-<p id="contieneCantidad">
-<?php
-echo $_POST['cantidadSeleccionada'];
-?>
-</p>
+
 <?php
 echo" ";
 
-</p>
+
 if(isset($_POST['ape']))
 {
 $apellido=$_POST['ape'];
@@ -186,7 +189,7 @@ $domicilio=$_POST['dom'];
 if(isset($_POST['domEntrega']))
 {
 $domicilioEntrega=$_POST['domEntrega'];
-//echo $domicilioEntrega;
+
 }
 if(isset($_POST['fpago']))
 {
@@ -196,8 +199,7 @@ $formaPago=$_POST['fpago'];
 
 $productoSeleccionado=$_POST['selectProductosPorCategorias'];
 echo $productoSeleccionado;
-//mysql_query("update Productos from productos set cantidad=cantidad-1 where nombre='$productoSeleccionado'",$conexion) or
-//die("Problemas en el select:".mysql_error());
+
 
 
 

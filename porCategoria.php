@@ -24,6 +24,8 @@ and open the template in the editor.
 </nav>
 </p>
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -54,6 +56,17 @@ $seleccionado=$row['categoria'];
 
 echo $seleccionado;
 
+$Cantidad=$_POST['cantidadSeleccionada'];
+
+echo $Cantidad;
+
+
+
+$_SESSION['cantidadComprada']  =$Cantidad;
+
+
+//session_start();
+//$_SESSION['nickname']  = 'Jhonnyf';
 ?>
 </div>
 </div>

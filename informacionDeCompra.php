@@ -5,6 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -23,27 +25,39 @@ if(isset($_POST['dni']))
 {
 $documento=$_POST['dni'];
 //lo trae bien
+echo 'documento '.$documento;
 }
-//if(isset($_POST['cantidadSeleccionada']))
+//if(isset($_POST['contieneCantidad']))
 //{
-$cantidadComprada2=$_POST['cantidadSeleccionada'];
-echo $cantidadComprada2;
+echo '<br>';	
+echo 'la cantidad comprada es '.'<br>'.' ';	
+$cantidadComprada2=$_SESSION['cantidadComprada'];
+echo ($cantidadComprada2);
+echo '<br>';
 //}
 //
 
 if(isset($_POST['domEntrega']))
 {
-$domicilioEntrega2=$_REQUEST['domEntrega'];
+$domicilioEntrega2=$_POST['domEntrega'];
 //lo trae bien
+echo 'domEntrega '.'<br>';
+echo $domicilioEntrega2;
 }
+$hoy=date("Y-m-d");
+echo '<br>';
 
+echo ($hoy);
+echo '<br>';
 
 $existeComprador=mysql_query("select dni from comprador where dni='$documento'",$conexion) or
 die("Problemas en el select:".mysql_error());
 
+print_r($existeComprador);
 		//poner insert de compra
-		mysql_query("insert into compras($documento,$cantidadComprada2,$domicilioEntrega2)",$conexion);
+		mysql_query("insert into compras('$hoy','$documento','$cantidadComprada2','$domicilioEntrega2')",$conexion);
 
+		echo "acá  ya habría insertado la compra";
 echo '<br>';
 
  if($existeComprador)

@@ -16,6 +16,8 @@ and open the template in the editor.
 
 </p>
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";

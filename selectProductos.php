@@ -13,6 +13,8 @@ and open the template in the editor.
     </head>
 
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -53,6 +55,7 @@ $resultado =$_POST['categoria'];
   <div class="panel-body">
 
 <select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<option disabled="disabled" selected="selected">Seleccione el Producto </option>
 <?php
 
 $productos=mysql_query("select nombre,descripcion,precio,imagen from productos where categoria='$resultado'",$conexion);
@@ -63,6 +66,8 @@ while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$row2['descripcion'].'  Precio: $'.$row2['precio'].'</OPTION>';
  echo '<img src="'.$row2['imagen'].'">';
 }
+
+
 
 
 ?>
