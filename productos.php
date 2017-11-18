@@ -56,14 +56,24 @@ $seleccionado=$row['categoria'];
 
 echo $seleccionado;
 
+
+
+
+
+$nombreProducto=$_POST['selectProductosPorCategorias'];
+
+echo $nombreProducto;
+
+
+$_SESSION['productoSeleccionado']=$nombreProducto;
+
+
 $Cantidad=$_POST['cantidadSeleccionada'];
-
-echo $Cantidad;
-
+$_SESSION['cantidadComprada'] =$Cantidad;
 
 
-$_SESSION['cantidadComprada']  =$Cantidad;
-
+$Producto=$_POST['selectProductosPorCategorias'];
+$_SESSION['productoComprado']=$Producto;
 
 //session_start();
 //$_SESSION['nickname']  = 'Jhonnyf';

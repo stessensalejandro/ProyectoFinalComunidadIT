@@ -4,6 +4,30 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+	    <title>Compra Hecha</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+<body>
+
+
+
+
+<form>
+<a class="btn btn-primary" href="productos.php" role="button">Volver a la pagina principal</a>
+</form>
+</body>
+</html>
+
+
+
+
+
+
 <?php
 session_start();
 
@@ -17,105 +41,86 @@ die("Problemas en la conexion");
 mysql_select_db($dbname,$conexion) or
 die("Problemas en la selección de la base de datos");  
 mysql_query ("SET NAMES 'utf8'");
-mysql_query("update productos set cantidad=cantidad-1",$conexion) or
-die("Problemas en el select:".mysql_error());
 
 
-if(isset($_POST['dni']))
-{
+
 $documento=$_POST['dni'];
-//lo trae bien
-echo 'documento '.$documento;
-}
-//if(isset($_POST['contieneCantidad']))
-//{
 echo '<br>';	
 echo 'la cantidad comprada es '.'<br>'.' ';	
-$cantidadComprada2=$_SESSION['cantidadComprada'];
-echo ($cantidadComprada2);
+$cantidad=$_SESSION['cantidadComprada'];
+echo ($cantidad);
 echo '<br>';
-//}
-//
+
 
 if(isset($_POST['domEntrega']))
 {
-$domicilioEntrega2=$_POST['domEntrega'];
+$domicilioEntrega=$_POST['domEntrega'];
 //lo trae bien
-echo 'domEntrega '.'<br>';
-echo $domicilioEntrega2;
+echo 'se lo llevaremos al domicilio de entrega '.'<br>';
+echo $domicilioEntrega;
 }
 $hoy=date("Y-m-d");
 echo '<br>';
-
-echo ($hoy);
 echo '<br>';
 
-$existeComprador=mysql_query("select dni from comprador where dni='$documento'",$conexion) or
+
+$productoComprado=$_SESSION['productoComprado'];
+
+$codigoProducto=mysql_query("select codigo from productos where nombre='$productoComprado'",$conexion) or
 die("Problemas en el select:".mysql_error());
 
-print_r($existeComprador);
-		//poner insert de compra
-		mysql_query("insert into compras('$hoy','$documento','$cantidadComprada2','$domicilioEntrega2')",$conexion);
+$codigoFila = mysql_fetch_array($codigoProducto,MYSQL_ASSOC);
 
-		echo "acá  ya habría insertado la compra";
+echo 'el codigo del producto comprado es '.$codigoFila['codigo'];
+
+$codigo=$codigoFila['codigo'];
+
+$existeComprador=mysql_query("select dni,nombre from comprador where dni='$documento'",$conexion) or
+die("Problemas en el select:".mysql_error());
 echo '<br>';
 
- if($existeComprador)
-        {
-		echo 'usted ya habia comprado, gracias por volver a elegir estos productos';
-		
 
-		}
+$filaComprador = mysql_fetch_array($existeComprador,MYSQL_ASSOC);
 
-		else
-			
-			{
-				$apellido=$_POST['ape'];
-				$nombre=$_POST['nom'];
-				$email=$_POST['email'];
-				$domicilio=$_POST['domicilio'];
-				echo 'es su primera compra, esperamos su retorno';
-				//poner insert de comprador
-				mysql_query("insert into comprador($apellido,$nombre,$documento,$email,$domicilio)",$conexion);
-				
-				
-				
-			}
-			
-			
-			
-			
-			
-			
-			
+echo 'el comprador tiene dni: '.$filaComprador['dni'];
+echo 'el comprador tiene nombre: '.$filaComprador['nombre'];
+
+//esta variable me mantiene si la consulta me trajo algun resultado
+$comproAlgunaVez=$filaComprador['dni'];
+
+if (!$comproAlgunaVez)
+{
+echo 'es su primera compra';
+$apellido=$_POST['ape'];
+$nombre=$_POST['nom'];
+$email=$_POST['email'];
+$domicilio=$_POST['dom'];
 ?>
 
+<div class="alert alert-info">  es su primera compra, esperamos su retorno  </div>
 
+<?php
+mysql_query("insert into comprador (`apellido`,`nombre`, `dni`, `email`, `domicilio`) VALUES('$apellido','$nombre','$documento','$email','$domicilio')",$conexion) or
+die("Problemas en el insert comprador:.'<br>'".mysql_error());
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-	    <title>Compra Hecha</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
-
- 
-<body>
-
-
-<h1> Gracias por tu Compra!!! </h1>
-
-<form>
-<a class="btn btn-primary" href="porCategoria.php" role="button">Volver a la pagina principal</a>
-
-</form>
-
-
-
-</body>
-
-
-</html>
+echo '<br>';
+//registro la compra
+mysql_query("INSERT INTO `compras`(`numeroCompra`,`fecha`, `codigo`, `dni`, `cantidad`, `domicilioCompra`) VALUES(0,'$hoy','$codigo','$documento','$cantidad','$domicilioEntrega')",$conexion) or
+die("Problemas en el insert compras:".mysql_error());
+echo "Se ha registrado su compra correctamente";
+echo '<br>';
+}
+else//si ya fue cliente
+{
+	?>
+	<div class="alert alert-success">  Gracias por elegirnos una vez mas </div>
+	<?php
+}	
+//hago la actualizacion del producto
+mysql_query("update productos set cantidad=cantidad-'$cantidad'",$conexion) or
+die("Problemas en el select:".mysql_error());
+	
+?>
 
 
 

@@ -58,7 +58,7 @@ $resultado =$_POST['categoria'];
 <option disabled="disabled" selected="selected">Seleccione el Producto </option>
 <?php
 
-$productos=mysql_query("select nombre,descripcion,precio,imagen from productos where categoria='$resultado'",$conexion);
+$productos=mysql_query("select codigo,nombre,descripcion,precio,imagen from productos where categoria='$resultado'",$conexion);
 
 while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 {
@@ -78,7 +78,7 @@ echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$row
 
 <div class="form-group">
   <label for="sel1">Elija una cantidad del producto:</label>
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="cantidadSeleccionada" name="cantidadSeleccionada" class="form-control" data-live-search="true">
+  <select class="form-control"  id="cantidadSeleccionada" name="cantidadSeleccionada" class="form-control" data-live-search="true">
     <option>1</option>
     <option>2</option>
     <option>3</option>

@@ -32,7 +32,7 @@ mysql_select_db($dbname,$conexion) or
 die("Problemas en la selección de la base de datos");  
 mysql_query ("SET NAMES 'utf8'");
 ?>
-<a href="porCategoria.php"><img src="volver.jpg" class="img-circle"></a>
+<a href="productos.php"><img src="volver.jpg" class="img-circle"></a>
 
 <div class="container">
 
@@ -60,7 +60,7 @@ mysql_query ("SET NAMES 'utf8'");
 	<div class="form-group">
       <label class="control-label col-sm-2" for="Dni">Dni:</label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" id="dni" placeholder="ingresa dni" name="dni" required>
+        <input type="number" class="form-control" id="dni" placeholder="ingresa dni" name="dni" pattern="^[9|8|7|6]\d{8}$" required>
       </div>
     </div>
 	
@@ -113,7 +113,11 @@ mysql_query ("SET NAMES 'utf8'");
 <?php
 $cant=$_POST['cantidadSeleccionada'];
 $_SESSION['cantidadComprada']=$cant;
-echo $cant;
+
+
+$Producto=$_POST['selectProductosPorCategorias'];
+$_SESSION['productoComprado']=$Producto;
+
 ?>
 </p>
 	
@@ -153,14 +157,6 @@ function mostrarDatosTarjeta(tarjeta){
 
 </body>
 
-<?php
-
-
-
-
-
-echo "Usted va a confirmar la compra de: ";
-?>
 
 <?php
 echo" ";
@@ -198,10 +194,22 @@ $formaPago=$_POST['fpago'];
 
 
 $productoSeleccionado=$_POST['selectProductosPorCategorias'];
-echo $productoSeleccionado;
+echo 'usted a seleccionado la compra de '.$cant.' '.$productoSeleccionado.'/s ';
+
+
+$imagen=mysql_query("select imagen,precio from productos where nombre='$productoSeleccionado'",$conexion) or
+die("Problemas en el select:".mysql_error());
 
 
 
+$filaCompra = mysql_fetch_array($imagen);
+
+
+echo '<img class="img-thumbnail" src="'.$filaCompra['imagen'].'.jpg" />';
+
+echo 'Precio Unitario: '.$filaCompra['precio'].'<br>';
+
+echo 'Precio total: '.$filaCompra['precio']*$cant;
 
 
 

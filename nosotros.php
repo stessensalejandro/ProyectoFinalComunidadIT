@@ -17,7 +17,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
       <ul class="nav navbar-nav">
-      <li><a  href="porCategoria.php">Productos</a></li>
+      <li><a  href="productos.php">Productos</a></li>
       <li><a class="active" href="nosotros.php">Nosotros</a></li>
      </ul>
   </div>
