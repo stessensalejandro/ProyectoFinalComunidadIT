@@ -24,12 +24,8 @@ and open the template in the editor.
 </nav>
 </p>
 <?php
+include 'conexion.php';
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "comercio_db";
 ?>
 <br>
 <br>
@@ -40,12 +36,6 @@ $dbname = "comercio_db";
 <SELECT name="cat" id="selectCategoria" class="form-control" data-live-search="true">
 <option value="noOption" disabled="disabled" selected="selected"> Seleccione una Categoria </option>
 <?php 
-
-$conexion=mysql_connect("localhost",$username,"") or
-die("Problemas en la conexion");
-mysql_select_db($dbname,$conexion) or
-die("Problemas en la selección de la base de datos");  
-mysql_query ("SET NAMES 'utf8'");
 $categorias=mysql_query("select distinct categoria from productos",$conexion) or
 die("Problemas en el select:".mysql_error());
 while($row = mysql_fetch_array($categorias))

@@ -13,6 +13,7 @@ and open the template in the editor.
     </head>
 
 <?php
+include 'conexion.php';
 session_start();
 
 $servername = "localhost";

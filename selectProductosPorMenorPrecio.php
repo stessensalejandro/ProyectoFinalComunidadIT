@@ -16,14 +16,8 @@ and open the template in the editor.
 
 </p>
 <?php
+include 'conexion.php';
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "comercio_db";
-
-
 ?>
 
 <br>
@@ -36,12 +30,6 @@ $dbname = "comercio_db";
 <SELECT name="cat" id="cate"  style="display:none" class="selectpicker" data-live-search="true">
 
 <?php 
-
-$conexion=mysql_connect("localhost",$username,"") or
-die("Problemas en la conexion");
-mysql_select_db($dbname,$conexion) or
-die("Problemas en la selección de la base de datos");  
-mysql_query ("SET NAMES 'utf8'");
 $categorias=mysql_query("select distinct categoria from productos",$conexion) or
 die("Problemas en el select:".mysql_error());
 while($row = mysql_fetch_array($categorias))
@@ -120,9 +108,6 @@ function mostrarImagen(imagen){
 </script>
 
 <p id="portaImagen">
-
-
-
 
 
 
