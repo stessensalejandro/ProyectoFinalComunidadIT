@@ -7,25 +7,16 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-	    <title>Por categorias</title>
+	    <title>productos</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
 <?php
 include 'conexion.php';
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "comercio_db";
-
-$conexion=mysql_connect("localhost",$username,"") or
-die("Problemas en la conexion");
-mysql_select_db($dbname,$conexion) or
-die("Problemas en la selección de la base de datos");  
-mysql_query ("SET NAMES 'utf8'");
 $categorias=mysql_query("select distinct categoria from productos",$conexion) or
 die("Problemas en el select:".mysql_error());
 ?>
@@ -55,7 +46,7 @@ $resultado =$_POST['categoria'];
   <div class="panel-heading">Seleccione el Producto</div>
   <div class="panel-body">
 
-<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true" required>
 <option disabled="disabled" selected="selected">Seleccione el Producto </option>
 <?php
 
@@ -65,11 +56,8 @@ while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 {
 	
 echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$row2['descripcion'].'  Precio: $'.$row2['precio'].'</OPTION>';
- echo '<img src="'.$row2['imagen'].'">';
+echo '<img src="'.$row2['imagen'].'">';
 }
-
-
-
 
 ?>
 </div>
@@ -97,7 +85,7 @@ echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$row
 
 
 
-<input type="submit" value="Comprar">
+<input type="submit" id="comprar" name="comprar" value="Comprar" >
 
 </form>
 
@@ -137,6 +125,7 @@ function mostrarImagen(imagen){
 	
 	
 <p id="portaImagen">
+
 
 
 

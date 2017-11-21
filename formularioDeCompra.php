@@ -115,7 +115,6 @@ mysql_query ("SET NAMES 'utf8'");
 $cant=$_POST['cantidadSeleccionada'];
 $_SESSION['cantidadComprada']=$cant;
 
-
 $Producto=$_POST['selectProductosPorCategorias'];
 $_SESSION['productoComprado']=$Producto;
 
@@ -195,7 +194,7 @@ $formaPago=$_POST['fpago'];
 
 
 $productoSeleccionado=$_POST['selectProductosPorCategorias'];
-echo 'usted a seleccionado la compra de '.$cant.' '.$productoSeleccionado.'/s ';
+
 
 
 $imagen=mysql_query("select imagen,precio from productos where nombre='$productoSeleccionado'",$conexion) or
@@ -205,16 +204,25 @@ die("Problemas en el select:".mysql_error());
 
 $filaCompra = mysql_fetch_array($imagen);
 
-
-echo '<img class="img-thumbnail" src="'.$filaCompra['imagen'].'.jpg" />';
-
-echo 'Precio Unitario: '.$filaCompra['precio'].'<br>';
-
-echo 'Precio total: '.$filaCompra['precio']*$cant;
-
-
-
 ?>
+
+<div class="container">
+<?php echo '<img class="img-thumbnail" src="'.$filaCompra['imagen'].'.jpg" />';  ?> 
+  <table class="table" border="2">
+   
+      <tr>
+        <th> <?php echo 'Precio Unitario: $'.$filaCompra['precio'].' ';   ?> </th>
+		<th>  <?php echo 'Cantidad: '.$cant;  ?>  </th>
+        <th>  <?php echo 'Precio Total: $'.$filaCompra['precio']*$cant;  ?>  </th>
+		
+      </tr>
+       
+   </table>
+</div>
+
+
+
+
 </html>
 
 

@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-	    <title>Por categorias</title>
+	    <title>productos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,7 +17,7 @@ and open the template in the editor.
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
       <ul class="nav navbar-nav">
-      <li><a class="active" href="porCategoria.php">Productos</a></li>
+      <li><a class="active" href="productos.php">Productos</a></li>
       <li><a href="nosotros.php">Nosotros</a></li>
      </ul>
   </div>
@@ -29,15 +29,16 @@ session_start();
 ?>
 <br>
 <br>
-<form class="form-inline"method="post" id='formularioPorCate' action="formularioDeCompra.php">
+<form class="form-inline"method="post" id='formularioPorCate' action="formularioDeCompra.php" onclick="this.disabled=true;" required>
 <div class="panel panel-primary">
   <div class="panel-heading">Elija una categoria</div>
   <div class="panel-body">
-<SELECT name="cat" id="selectCategoria" class="form-control" data-live-search="true">
+<SELECT name="cat" id="selectCategoria" class="form-control" data-live-search="true" required>
 <option value="noOption" disabled="disabled" selected="selected"> Seleccione una Categoria </option>
 <?php 
 $categorias=mysql_query("select distinct categoria from productos",$conexion) or
 die("Problemas en el select:".mysql_error());
+
 while($row = mysql_fetch_array($categorias))
 {
 echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
@@ -65,8 +66,7 @@ $_SESSION['cantidadComprada'] =$Cantidad;
 $Producto=$_POST['selectProductosPorCategorias'];
 $_SESSION['productoComprado']=$Producto;
 
-//session_start();
-//$_SESSION['nickname']  = 'Jhonnyf';
+
 ?>
 </div>
 </div>
@@ -76,8 +76,8 @@ $_SESSION['productoComprado']=$Producto;
 <div class="panel panel-primary">
   <div class="panel-heading">Ordenar por</div>
   <div class="panel-body">
-<select name="precio" id="SelectPrecio" class="form-control" data-live-search="true">
-<option value="noSelecciona" disabled="disabled" selected="selected"> Seleccione un producto </option>
+<select name="precio" id="SelectPrecio" class="form-control" data-live-search="true" required>
+<option value="noSelecciona" disabled="disabled" selected="selected" > Seleccione un producto </option>
 <option value="menorPrecio">menor precio</option>
 <option value="mayorPrecio">mayor precio</option>
 </div>
@@ -85,6 +85,9 @@ $_SESSION['productoComprado']=$Producto;
 </select>
 
 <script>
+
+
+
 $('select#selectCategoria').on('change',function(){
 	var seleccionado = $(this).val();
 	mostrarPorCategorias(seleccionado);
@@ -155,18 +158,32 @@ function mostrarPorMayorPrecio(nombre){
                 }
         });
 }
-
-
 </script>
+
+
+                       
+
 
 <p id='contenedor'>
 
 </p>
+
 <br>
 <br>
 <br>
 
+
+
+
 </form>
+
+
+
+
+
+<?php
+
+?>
 
 
 

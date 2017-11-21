@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-	    <title>Por categorias</title>
+	    <title>productos</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -41,7 +41,7 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
 <div class="panel panel-primary">
   <div class="panel-heading">Seleccione el Producto</div>
   <div class="panel-body">
-<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true" required>
 <option disabled="disabled" selected="selected">Seleccione el Producto </option>
 <?php
 

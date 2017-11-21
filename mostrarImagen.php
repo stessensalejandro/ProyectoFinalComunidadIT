@@ -15,8 +15,9 @@ and open the template in the editor.
 
 <?php
 include 'conexion.php';
+session_start();
 ?>
-
+<form class="form-inline" id='formularioAgregar'>
 <br>
 <br>
 
@@ -36,16 +37,23 @@ $fila=mysql_fetch_array($imagen);
 echo $fila['descripcion'];
 
 echo '<br>';
-?>
-<div class="col-md-18 ">
 
+echo $fila['nombre'];
+
+echo '<br>';
+
+?>
+
+<div class="col-md-18 ">
     
 <?php    
 echo '<img class="img-thumbnail" src="'.$fila['imagen'].'.jpg" />';
+
 ?>
 <div class="h-30"></div>
-</div>
+
 </div>
 
+</form>
 
 </html>
