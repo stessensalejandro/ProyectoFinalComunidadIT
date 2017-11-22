@@ -9,7 +9,7 @@
 
 
 body {
-  background-image: url("https://previews.123rf.com/images/photos777/photos7771409/photos777140900060/31700807-textura-del-papel-azul-arrugado-para-el-fondo-Foto-de-archivo.jpg");
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ4yyydEmOH5UuepbEBugfU820FeVUUVj1oD6nqS5ra71qoOCmkw");
 		}
 #fpago{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}	
 input.text, select.text,  {

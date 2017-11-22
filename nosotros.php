@@ -19,7 +19,11 @@
 	background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/
 	background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
 	overflow:hidden;
-	width:380px;
+	width:100%;
+}
+#panel1{
+	font-family:Helvetica;
+	font-weight:bold;
 }
    
 	   </style>
@@ -44,7 +48,7 @@
 </nav>
 <p>
 
-<div class="panel panel-primary">
+<div class="panel panel-primary" id="panel1">
   <div class="panel-heading"><h2>NUESTRA MISIÓN </h2></div>
   <div class="panel-body">
 <h3>   

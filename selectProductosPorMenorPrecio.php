@@ -7,8 +7,7 @@ and open the template in the editor.
 <html lang="es">
     <head>
 	<style>
-		p{background-image: url("https://us.123rf.com/450wm/mazirama/mazirama1501/mazirama150100358/35800165-e-commerce-render-concepto-con-las-flechas-azules-sobre-un-fondo-azul.jpg?ver=6")
-         }
+
 	#selectProductosPorCategorias{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
 	#cantidadSeleccionada{font-family: verdana; font-size: 25px; width: 400px; height:50px;}
     #comprar{

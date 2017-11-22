@@ -6,6 +6,21 @@ and open the template in the editor.
 -->
 <html>
     <head>
+	<style>
+	#desc,#nom{/*Bordes redondeados*/
+	-webkit-border-radius:10px;/*Para chrome y Safari*/
+	-moz-border-radius:10px;/*Para Firefox*/
+	-o-border-radius:10px;/*Para Opera*/
+	border-radius:10px;/*El estandar por defecto*/
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));/*Para chrome y Safari*/
+	/*Degradados*/
+	background-image: -moz-linear-gradient(top center, #FFF, #CCC);/*Para Firefox*/
+	<!-- background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/-->
+	<!-- background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/-->
+	overflow:hidden;
+	width:30%;
+	align:center;}
+	</style>
         <meta charset="UTF-8">
 	    <title>Imagen del Producto</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,25 +48,26 @@ die("Problemas en el select:".mysql_error());
 echo '<br>';
 
 $fila=mysql_fetch_array($imagen);
+?>
 
-echo $fila['descripcion'];
-
+<?php
 echo '<br>';
+?>
 
-echo $fila['nombre'];
 
+
+<?php
 echo '<br>';
 
 ?>
 
-<div class="col-md-18 ">
-    
+<div class="row">
+<h2 id="desc"> <?php echo $fila['descripcion']; ?> </h2>
+<h2 id="nom"> <?php echo $fila['nombre']; ?> </h2>    
 <?php    
 echo '<img class="img-thumbnail" src="'.$fila['imagen'].'.jpg" />';
 
 ?>
-<div class="h-30"></div>
-
 </div>
 
 </form>

@@ -7,8 +7,7 @@ and open the template in the editor.
 <html lang="es">
     <head>
 	<style>
-	p{	background-image: url("https://us.123rf.com/450wm/mazirama/mazirama1501/mazirama150100358/35800165-e-commerce-render-concepto-con-las-flechas-azules-sobre-un-fondo-azul.jpg?ver=6")
-	}
+
 	#selectProductosPorCategorias{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
 	#cantidadSeleccionada{font-family: verdana; font-size: 25px; width: 400px; height:50px;}
 		 #comprar{
@@ -22,7 +21,7 @@ and open the template in the editor.
     border: 2px solid #0016b0;
   }
 	</style>
-        <meta charset="UTF-8">
+     <meta charset="UTF-8">
 	    <title>productos</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +71,7 @@ $productos=mysql_query("select codigo,nombre,descripcion,precio,imagen from prod
 while($row2 = mysql_fetch_array($productos,MYSQL_ASSOC))
 {
 	
-echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$row2['descripcion'].'  Precio: $'.$row2['precio'].'</OPTION>';
+echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripcion: '.$row2['descripcion'].'  Precio: $'.$row2['precio'].'</OPTION>';
 echo '<img src="'.$row2['imagen'].'">';
 }
 

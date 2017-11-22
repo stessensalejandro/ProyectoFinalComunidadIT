@@ -19,14 +19,14 @@ and open the template in the editor.
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));/*Para chrome y Safari*/
 	/*Degradados*/
 	background-image: -moz-linear-gradient(top center, #FFF, #CCC);/*Para Firefox*/
-	background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/
-	background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
+	<!-- background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/-->
+	<!-- background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/-->
 	overflow:hidden;
-	width:380px;
+	width:100%;
 }
     
 	
-#selectCategoria{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+#selectCategoria{ font-family: verdana; font-size: 25px; width: 400px; height:40px;}
   
   
 #SelectPrecio{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}

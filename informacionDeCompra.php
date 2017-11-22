@@ -13,7 +13,7 @@ and open the template in the editor.
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
 	body {
-  background-image: url("https://previews.123rf.com/images/photos777/photos7771409/photos777140900060/31700807-textura-del-papel-azul-arrugado-para-el-fondo-Foto-de-archivo.jpg");
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ4yyydEmOH5UuepbEBugfU820FeVUUVj1oD6nqS5ra71qoOCmkw");
 		}
 	#botonVolver{
 	text-decoration: none;
@@ -129,7 +129,6 @@ $comproAlgunaVez=$filaComprador['dni'];
 
 if (!$comproAlgunaVez)
 {
-echo 'es su primera compra';
 $apellido=$_POST['ape'];
 $nombre=$_POST['nom'];
 $email=$_POST['email'];
