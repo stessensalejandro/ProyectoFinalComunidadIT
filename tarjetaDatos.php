@@ -11,6 +11,8 @@ and open the template in the editor.
 	.credit-card-div img { padding-top:30px; }
 	.credit-card-div .small-font { font-size:15px; }
 	.credit-card-div .pad-adjust { padding-top:10px; }
+	
+
 	</style>
         <meta charset="UTF-8">
 	    <title>Por categorias</title>
@@ -24,8 +26,9 @@ and open the template in the editor.
 
 	
 <div class="form-group">
-	<form  class="credit-card-div" action="informacionDeCompra.php" method="post">
-<div class="panel panel-default" >
+	<!--<form  class="credit-card-div" action="informacionDeCompra.php" method="post">
+-->
+	<div class="panel panel-default" >
  <div class="panel-heading">
      
       <div class="row ">
@@ -56,7 +59,7 @@ and open the template in the editor.
  </div> 
  </div>
  
-</form>
+<!--</form>-->
 
 	 
 	

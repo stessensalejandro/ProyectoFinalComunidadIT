@@ -6,19 +6,54 @@ and open the template in the editor.
 -->
 <html>
     <head>
+	<style>
+	body {
+  background-image: url("https://image.freepik.com/vector-gratis/fondo-con-diseno-de-comercio-electronico_23-2147650066.jpg");
+		}
+		nav{
+	/*Bordes redondeados*/
+	-webkit-border-radius:10px;/*Para chrome y Safari*/
+	-moz-border-radius:10px;/*Para Firefox*/
+	-o-border-radius:10px;/*Para Opera*/
+	border-radius:10px;/*El estandar por defecto*/
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));/*Para chrome y Safari*/
+	/*Degradados*/
+	background-image: -moz-linear-gradient(top center, #FFF, #CCC);/*Para Firefox*/
+	background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/
+	background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
+	overflow:hidden;
+	width:380px;
+}
+    
+	
+#selectCategoria{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+  
+  
+#SelectPrecio{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+
+	
+	</style>
         <meta charset="UTF-8">
 	    <title>productos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
-<body class="text-center">
+    <script>
+function pregunta(){ 
+    if (confirm('¿Estas seguro de comprar este producto?')){ 
+       document.tuformulario.submit() 
+    } 
+} 
+
+</script>
+	</head>
+<body class="text-center" src="imagenFondo.jpg">
 <p>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
       <ul class="nav navbar-nav">
-      <li><a class="active" href="productos.php">Productos</a></li>
-      <li><a href="nosotros.php">Nosotros</a></li>
+      <li><a class="active" href="productos.php"><h2> Productos </h2></a></li>
+      <li><a href="nosotros.php"> <h2> Nosotros </h2> </a></li>
      </ul>
   </div>
 </nav>
@@ -29,10 +64,9 @@ session_start();
 ?>
 <br>
 <br>
-<form class="form-inline"method="post" id='formularioPorCate' action="formularioDeCompra.php" onclick="this.disabled=true;" required>
-<div class="panel panel-primary">
-  <div class="panel-heading">Elija una categoria</div>
-  <div class="panel-body">
+<form class="form-inline" method="post" id='formularioPorCate' action="formularioDeCompra.php" onclick="this.disabled=true;" required>
+<div>
+  <div>
 <SELECT name="cat" id="selectCategoria" class="form-control" data-live-search="true" required>
 <option value="noOption" disabled="disabled" selected="selected"> Seleccione una Categoria </option>
 <?php 
@@ -73,11 +107,11 @@ $_SESSION['productoComprado']=$Producto;
 </SELECT>
 <br>
 <br>
-<div class="panel panel-primary">
-  <div class="panel-heading">Ordenar por</div>
-  <div class="panel-body">
-<select name="precio" id="SelectPrecio" class="form-control" data-live-search="true" required>
-<option value="noSelecciona" disabled="disabled" selected="selected" > Seleccione un producto </option>
+<div>
+
+<div>
+<select name="precio" id="SelectPrecio" class="form-control"  required>
+<option value="noSelecciona" disabled="disabled" selected="selected" > Elija su filtro de busqueda </option>
 <option value="menorPrecio">menor precio</option>
 <option value="mayorPrecio">mayor precio</option>
 </div>
@@ -85,7 +119,6 @@ $_SESSION['productoComprado']=$Producto;
 </select>
 
 <script>
-
 
 
 $('select#selectCategoria').on('change',function(){
@@ -178,12 +211,6 @@ function mostrarPorMayorPrecio(nombre){
 </form>
 
 
-
-
-
-<?php
-
-?>
 
 
 

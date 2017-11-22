@@ -11,7 +11,36 @@ and open the template in the editor.
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    </head>
+    <style>
+	body {
+  background-image: url("https://previews.123rf.com/images/photos777/photos7771409/photos777140900060/31700807-textura-del-papel-azul-arrugado-para-el-fondo-Foto-de-archivo.jpg");
+		}
+	#botonVolver{
+	text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+  }
+    #botonVolver:hover{
+    color: #1883ba;
+    background-color: #ffffff;}
+    label
+	{color: #ffffff;}	
+	.table
+	{color: #ffffff;}
+	#detalleCompra{
+	
+    	color: #black;
+		font-size:40px;
+		padding: 10px;
+		
+	}
+	</style>
+	</head>
 <body>
 
 
@@ -44,13 +73,11 @@ $codigoFila = mysql_fetch_array($codigoProducto,MYSQL_ASSOC);
 
 
 ?>
-<div class="table-responsive">
-<table class="table">
+<div class="alert alert-info">
+<table class="table" id="detalleCompra">
 <thead class="thead-inverse">
 <tr>
-<th>
-Numero de Factura
-</th>
+
 <th>
 Codigo del Producto
 </th>
@@ -69,11 +96,9 @@ Total
 <thead>
 </tr>
  <tr class="active">
-<td class="success">
-<?php echo $numeroCompra['numeroCompra']; ?>
-</td>
+
  <td class="success">
-<?php echo $codigoFila['codigo'].'<br>'; ?>
+<?php echo $codigoFila['codigo'].'<br>'; ?> 
 </td>
 <td class="success">
 <?php echo $codigoFila['nombre'].'<br>'; ?>
@@ -93,36 +118,11 @@ Total
 </div>
 <?php
 $codigo=$codigoFila['codigo'];
-
 $existeComprador=mysql_query("select * from comprador where dni='$documento'",$conexion) or
 die("Problemas en el select:".mysql_error());
 echo '<br>';
-
-
-
 $filaComprador = mysql_fetch_array($existeComprador,MYSQL_ASSOC);
 ?>
-<span class="border border-primary">
-<div class="table-responsive">
-
-<table class="table table-bordered">
-
-<p class="text-uppercase"> Datos Personales: </p>
-
-
-
-<th>
-
-<p class="text-uppercase"> <?php echo 'Dni: '.$filaComprador['dni'].'<br>';?> </p> 
-<p class="text-uppercase"> <?php echo 'Nombre: '.$filaComprador['nombre'].'<br>'; ?> </p>
-<p class="text-uppercase"> <?php echo 'Apellido: '.$filaComprador['apellido'].'<br>'; ?> </p>
-<p class="text-uppercase"> <?php echo 'Domicilio de Entrega: '.$domicilioEntrega; ?> </p>
-</th>
-
-</table>
-
-</div>
-</span>
 <?php
 //esta variable me mantiene si la consulta me trajo algun resultado
 $comproAlgunaVez=$filaComprador['dni'];
@@ -136,7 +136,7 @@ $email=$_POST['email'];
 $domicilio=$_POST['dom'];
 ?>
 
-<div class="alert alert-info"> <h3>  Es su primera compra, esperamos su retorno </h3> </div>
+<div class="alert alert-info"> <h1>  Es su primera compra, esperamos su retorno </h1> </div>
 
 <?php
 mysql_query("insert into comprador (`apellido`,`nombre`, `dni`, `email`, `domicilio`) VALUES('$apellido','$nombre','$documento','$email','$domicilio')",$conexion) or
@@ -152,7 +152,7 @@ echo '<br>';
 else//si ya fue cliente
 {
 	?>
-	<div class="alert alert-success"> <h3>  Gracias por elegirnos una vez mas </h3> </div>
+	<div class="alert alert-success"> <h1>  Gracias por elegirnos una vez mas </h1> </div>
 	<?php
 }	
 //hago la actualizacion del producto
@@ -160,9 +160,9 @@ mysql_query("update productos set cantidad=cantidad-'$cantidad'",$conexion) or
 die("Problemas en el select:".mysql_error());
 ?>	
 	
-<a class="btn btn-primary" href="productos.php" role="button">Volver a Comprar</a>
+
 <form action="generarFactura.php" method="post" target="_blank">
-<button type="submit" target="_blank" value="obtener Factura"> obtener Factura </button>
+<button type="submit" target="_blank" value="obtener Factura"><img title="Pulse aquí para obtener su Ticket de compra" src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/download.png" class="img-responsive"  width="120" height="236" alt="Ticket de Compra"> </button>
 
 <input type="hidden" name="cantidadProducto" id="cantidadProducto" value=<?php echo $cantidad?> >
 <input type="hidden" name="descripcionProducto" id="descripcionProducto" value=<?php echo $codigoFila['nombre']?> >
@@ -171,7 +171,8 @@ die("Problemas en el select:".mysql_error());
 <input type="hidden" name="dniCliente" id="dniCliente" value=<?php echo $documento?> >
 
 </form>    
-	
+<br>
+<a class="btn btn-primary" id="botonVolver" href="productos.php" role="button" title="Pulse aquí para volver a la página principal">Volver a Comprar</a>	
 </html>	
 
 

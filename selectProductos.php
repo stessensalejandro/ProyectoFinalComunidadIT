@@ -1,11 +1,27 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="es">
     <head>
+	<style>
+	p{	background-image: url("https://us.123rf.com/450wm/mazirama/mazirama1501/mazirama150100358/35800165-e-commerce-render-concepto-con-las-flechas-azules-sobre-un-fondo-azul.jpg?ver=6")
+	}
+	#selectProductosPorCategorias{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+	#cantidadSeleccionada{font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+		 #comprar{
+	text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+  }
+	</style>
         <meta charset="UTF-8">
 	    <title>productos</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,6 +42,7 @@ die("Problemas en el select:".mysql_error());
 
 <p style="display:none">categorias</p>
 
+
 <form class="form-inline" id='formularioPorCate' action="formularioDeCompra.php" method="post">
 <SELECT name="cat" id="cate"  style="display:none" class="form-control">
 
@@ -42,12 +59,12 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
 $resultado =$_POST['categoria'];
 ?>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">Seleccione el Producto</div>
-  <div class="panel-body">
+<div>
 
-<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true" required>
-<option disabled="disabled" selected="selected">Seleccione el Producto </option>
+<div class="panel-body">
+
+<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<option disabled="disabled" selected="selected"><h3>Seleccione el Producto</h3> </option>
 <?php
 
 $productos=mysql_query("select codigo,nombre,descripcion,precio,imagen from productos where categoria='$resultado'",$conexion);
@@ -66,7 +83,7 @@ echo '<img src="'.$row2['imagen'].'">';
 
 
 <div class="form-group">
-  <label for="sel1">Elija una cantidad del producto:</label>
+
   <select class="form-control"  id="cantidadSeleccionada" name="cantidadSeleccionada" class="form-control" data-live-search="true">
     <option>1</option>
     <option>2</option>
@@ -82,14 +99,8 @@ echo '<img src="'.$row2['imagen'].'">';
 </div>
 
 
-
-
-
-<input type="submit" id="comprar" name="comprar" value="Comprar" >
-
+<input type="image" id="comprar" name="comprar" value="Comprar">
 </form>
-
-	
 	
 <script>
 

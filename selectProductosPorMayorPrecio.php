@@ -1,15 +1,34 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="es">
     <head>
-        <meta charset="UTF-8">
+	<style>
+		p{	background-image: url("https://us.123rf.com/450wm/mazirama/mazirama1501/mazirama150100358/35800165-e-commerce-render-concepto-con-las-flechas-azules-sobre-un-fondo-azul.jpg?ver=6")
+         }
+	#selectProductosPorCategorias{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+	#cantidadSeleccionada{font-family: verdana; font-size: 25px; width: 400px; height:50px;}
+	 #comprar{
+	text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+  }
+
+	</style>
+	    <meta charset="UTF-8">
 	    <title>productos</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
 <p>
@@ -37,9 +56,8 @@ echo'<OPTION VALUE="'.$row['categoria'].'">'.$row['categoria'].'</OPTION>';
 }
 ?>
 </SELECT>
-<div class="panel panel-primary">
-  <div class="panel-heading">Seleccione el Producto</div>
-  <div class="panel-body">
+
+<div class="panel-body">
   
 <select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true" required>
 <option disabled="disabled" selected="selected">Seleccione el Producto </option>
@@ -55,10 +73,9 @@ echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$ro
 }
 ?>
 </div>
-</div>
 </select>
 <div class="form-group">
-  <label for="sel1">Elija una cantidad del producto:</label>
+
   <select class="form-control" id="cantidadSeleccionada" name="cantidadSeleccionada" class="form-control" data-live-search="true">
     <option>1</option>
     <option>2</option>
@@ -72,7 +89,8 @@ echo'<OPTION VALUE="'.$row2['nombre'].'">'.$row2['nombre'].' Descripción: '.$ro
     <option>10</option>
   </select>
 </div>
-<input type="submit" value="Comprar">
+
+<input type="image" id="comprar" name="comprar" value="Comprar" >
 </form>
 
 

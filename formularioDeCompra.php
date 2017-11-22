@@ -6,6 +6,39 @@
 .credit-card-div img { padding-top:30px; }
 .credit-card-div .small-font { font-size:15px; }
 .credit-card-div .pad-adjust { padding-top:10px; }
+
+
+body {
+  background-image: url("https://previews.123rf.com/images/photos777/photos7771409/photos777140900060/31700807-textura-del-papel-azul-arrugado-para-el-fondo-Foto-de-archivo.jpg");
+		}
+#fpago{ font-family: verdana; font-size: 25px; width: 400px; height:50px;}	
+input.text, select.text,  {
+   background: silver;
+   border: 1px solid #393939;
+   border-radius: 5px 5px 5px 5px;
+   color: #393939;
+   font-size: 12px;
+   padding: 5px;
+}
+.titulo{font-size: 50px;color: #ffffff; font-weight: 600;}
+.detalleCompra{font-size: 50px;color: #ffffff; font-weight: 600;}
+	 .confirmarCompra{
+	text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+  }
+     .confirmarCompra:hover{
+    color: #1883ba;
+    background-color: #ffffff;}
+    label
+	{color: #ffffff;}	
+	.table
+	{color: #ffffff;}
 </style>
   <title>Formulario de Compra</title>
   <meta charset="utf-8">
@@ -16,6 +49,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  </head>
 
+ 
 <body>
 
 <?php
@@ -33,27 +67,27 @@ mysql_select_db($dbname,$conexion) or
 die("Problemas en la selección de la base de datos");  
 mysql_query ("SET NAMES 'utf8'");
 ?>
-<a href="productos.php"><img src="volver.jpg" class="img-circle"></a>
 
+<h2 class="titulo">Confirmación de compra</h2>
 <div class="container">
 
-  <h2>Confirmacion de compra</h2>
-  <form class="form-horizontal" action="informacionDeCompra.php" method="post">
+  
+  <form class="form-horizontal" action="informacionDeCompra.php" method="post" id="formularioCompra">
     
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd" >Apellido:</label>
+      <label class="control-label col-sm-2" for="pwd" >Apellidos:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" id="ape" placeholder="ingresa apellido" name="ape" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd" >Nombres:</label>
+      <label class="control-label col-sm-2" for="pwd">Nombres:</label>
       <div class="col-sm-10">          
         <input type="text" class="form-control" id="nom" placeholder="ingresa nombres" name="nom" required>
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="email" >Email:</label>
+      <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-10">
         <input type="email" class="form-control" id="email" placeholder="ingresa mail" name="email" required>
       </div>
@@ -85,9 +119,7 @@ mysql_query ("SET NAMES 'utf8'");
  
 </div>
 
-
- <div class="form-group">
-  <label for="sel1">Elija su forma de pago:</label>
+<div class="form-group">
   <select class="form-control" id="fpago" name="fpago" required>
   <option disabled="disabled" selected="selected" value="">Elija su tarjeta </option>
     <option>MasterCard</option>
@@ -103,7 +135,7 @@ mysql_query ("SET NAMES 'utf8'");
 
  <div class="form-group">        
       <div class="control-label col-sm-15">
-        <button type="submit" class="btn btn-success">Confirmar Compra</button>
+        <button id="confirmarCompra" class="confirmarCompra" type="submit" onclick="pregunta()" class="btn btn-success">Confirmar Compra</button>
       </div>
 <div>
 	
@@ -205,20 +237,22 @@ die("Problemas en el select:".mysql_error());
 $filaCompra = mysql_fetch_array($imagen);
 
 ?>
+<h2 class="detalleCompra"> Usted va a confirmar la compra: </h2>
 
-<div class="container">
 <?php echo '<img class="img-thumbnail" src="'.$filaCompra['imagen'].'.jpg" />';  ?> 
-  <table class="table" border="2">
+
+<br>
+  <table class="table">
    
       <tr>
-        <th> <?php echo 'Precio Unitario: $'.$filaCompra['precio'].' ';   ?> </th>
-		<th>  <?php echo 'Cantidad: '.$cant;  ?>  </th>
-        <th>  <?php echo 'Precio Total: $'.$filaCompra['precio']*$cant;  ?>  </th>
+        <th><h3> <?php echo 'Precio Unitario: $'.$filaCompra['precio'].' ';   ?> </h3></th>
+		<th><h3>  <?php echo 'Cantidad: '.$cant;  ?>  </h3></th>
+        <th><h3>  <?php echo 'Precio Total: $'.$filaCompra['precio']*$cant;  ?>  </h3></th>
 		
       </tr>
        
    </table>
-</div>
+
 
 
 
