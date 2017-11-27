@@ -62,7 +62,7 @@ $resultado =$_POST['categoria'];
 
 <div class="panel-body">
 
-<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true">
+<select id='selectProductosPorCategorias' name='selectProductosPorCategorias' class="form-control" data-live-search="true" required>
 <option disabled="disabled" selected="selected"><h3>Seleccione el Producto</h3> </option>
 <?php
 
@@ -102,6 +102,9 @@ echo '<img src="'.$row2['imagen'].'">';
 </form>
 	
 <script>
+
+
+
 
 $('select#selectProductosPorCategorias').on('change',function(){
 	var seleccionado = $(this).val();
